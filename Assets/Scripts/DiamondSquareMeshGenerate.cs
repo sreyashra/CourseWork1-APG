@@ -11,8 +11,13 @@ public class DiamondSquareMeshGenerate : MonoBehaviour
     [SerializeField] private float terrainSize;
     [SerializeField] private float terrainAltitude;
 
+    private Color[] colors;
+    public Gradient colorGradient;
+
     private Vector3[] terrainVertices;
     private int terrainVerticesCount;
+    private float terrainAltitudeMax;
+    private float terrainAltitudeMin;
     
     public int TerrainDissection
     {
@@ -39,6 +44,7 @@ public class DiamondSquareMeshGenerate : MonoBehaviour
 
     public void GenerateTerrain()
     {
+        terrainAltitude = UnityEngine.Random.Range(3, 6);
         terrainVerticesCount = (int) Mathf.Pow(terrainSeperation + 1, 2); //To calculate the vertex count
         terrainVertices = new Vector3[terrainVerticesCount]; //Initialize vertex array
         int[] triangles = new int[((int)Mathf.Pow(terrainSeperation, 2)) * 6]; //triangles required for each terrain
@@ -105,6 +111,22 @@ public class DiamondSquareMeshGenerate : MonoBehaviour
             numberOfSquares *= 2;
             squareSize /= 2;
             terrainAltitude /= 2f;
+        }
+        
+        //Set a custom range for vertices to apply the gradient
+        terrainAltitudeMax = -terrainAltitude;
+        terrainAltitudeMin = terrainAltitude;
+        for (int i = 0; i < terrainVerticesCount; i++)
+        {
+            if (terrainVertices[i].y > terrainAltitudeMax) terrainAltitudeMax = terrainVertices[i].y;
+            if (terrainVertices[i].y < terrainAltitudeMin) terrainAltitudeMin = terrainVertices[i].y;
+        }
+
+        colors = new Color[terrainVerticesCount];
+        for (int i = 0; i < terrainVerticesCount; i++)
+        {
+            float vertexAltitude = Mathf.InverseLerp(terrainAltitudeMax, terrainAltitudeMin, terrainVertices[i].y);
+            colors[i] = colorGradient.Evaluate(vertexAltitude);
         }
 
         terrainMesh.vertices = terrainVertices;
