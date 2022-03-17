@@ -132,6 +132,7 @@ public class DiamondSquareMeshGenerate : MonoBehaviour
         terrainMesh.vertices = terrainVertices;
         terrainMesh.uv = uvs;
         terrainMesh.triangles = triangles;
+        terrainMesh.colors = colors;
         
         terrainMesh.RecalculateBounds();
         terrainMesh.RecalculateNormals();
