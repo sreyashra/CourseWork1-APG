@@ -143,8 +143,8 @@ public class DiamondSquareMeshGenerate : MonoBehaviour
         int halfSize = (int) (size / 2f);
         int topLeft = row * (terrainSeperation + 1) + column;
         int bottomLeft = (row + size) * (terrainSeperation + 1) + column;
-
         int midPoint = (int) (row + halfSize) * (terrainSeperation + 1) + (int) (column + halfSize);
+        
         terrainVertices[midPoint].y = (terrainVertices[topLeft].y + terrainVertices[topLeft + size].y + terrainVertices[bottomLeft].y + terrainVertices[bottomLeft + size].y)*0.25f + UnityEngine.Random.Range(-offset, offset);
         terrainVertices[topLeft + halfSize].y = (terrainVertices[topLeft].y + terrainVertices[topLeft + size].y + terrainVertices[midPoint].y) / 3 + UnityEngine.Random.Range(-offset, offset);
         terrainVertices[midPoint - halfSize].y = (terrainVertices[topLeft].y + terrainVertices[bottomLeft].y + terrainVertices[midPoint].y)/3 + UnityEngine.Random.Range(-offset, offset);

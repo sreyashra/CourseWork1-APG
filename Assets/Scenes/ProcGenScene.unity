@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 1944177373}
   - component: {fileID: 1944177372}
   - component: {fileID: 1944177371}
+  - component: {fileID: 1944177375}
   m_Layer: 0
   m_Name: Mesh Generator
   m_TagString: Untagged
@@ -693,6 +694,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1944177375
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944177370}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1952070072
 GameObject:
   m_ObjectHideFlags: 0
